@@ -159,7 +159,7 @@ function points() {
     var value = floor((height - 50 - round(y)) / 2 * infactor);
     append(values, value);
   }
-  var separator = ","
+  var separator = " "
   message = join(values, separator);
   if (state) {
     result.html(" ");
