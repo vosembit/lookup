@@ -157,7 +157,7 @@ function points() {
     x = bezierPoint(50, ax, bx, width - 50, t);
     y = bezierPoint(height - 50, ay, by, 50, t);
     var value = floor((height - 50 - round(y)) / 2 * infactor);
-    append(values, value);
+    append(values, value + ", ");
   }
   var separator = " "
   message = join(values, separator);
