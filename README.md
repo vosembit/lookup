@@ -1,3 +1,3 @@
 # QGG
 
-Quantum Gamma Generator v.0.1
+Quantum Gamma Generator v.0.2
