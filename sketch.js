@@ -1,15 +1,12 @@
 var canvas, ax, ay, bx, by, t;
-
-var inres = 256; // Input Resolution
-var instep = 32; // Input Mesh Step
-var infactor = 1; // Input Multiple Factor
-
-var outres = 256; // Output Resolution
-var outstep = 32; // Output Mesh Step
-var outfactor = 1; // Output Multiple Factor
-
-var state = false; // Print Calculations to the page
-var message; // Save Calculations to the array
+var inres = 256;    // Input Resolution
+var instep = 32;    // Input Mesh Step
+var infactor = 1;   // Input Multiple Factor
+var outres = 256;   // Output Resolution
+var outstep = 32;   // Output Mesh Step
+var outfactor = 1;  // Output Multiple Factor
+var state = false;  // Print Calculations to the page
+var message;        // Save Calculations to the array
 
 function setup() {
   rectMode(CENTER);
@@ -18,39 +15,47 @@ function setup() {
   input = createP('INPUT:');
   input.position(50, 45);
   input.id("input");
+  
   // create input 8 bit resolution button
   input8 = createButton('256');
   input8.position(100, 50);
   input8.id("res");
   input8.mousePressed(in256);
+  
   // create input 10 bit resolution button
   input10 = createButton('1024');
   input10.position(150, 50);
   input10.id("res");
   input10.mousePressed(in1024);
+  
   // OUTPUT RESOLUTION SELECTOR
   output = createP('OUTPUT:');
   output.position(226, 50);
   output.id("input");
+  
   // create output 8 bit resolution button
   output8 = createButton('256');
   output8.position(290, 50);
   output8.id("res");
   output8.mousePressed(out256);
+  
   // create output 10 bit resolution button
   output10 = createButton('1024');
   output10.position(340, 50);
   output10.id("res");
   output10.mousePressed(out1024);
+  
   // create get button
   getData = createButton('GET DATA');
   getData.position(450, 50);
   getData.id("btn");
   getData.mousePressed(showData);
+  
   // create canvas for curve and infografics
   canvas = createCanvas(612, 612);
   canvas.position(0, 100);
   canvas.parent('curve');
+  
   // create paragraph text with calculated data
   result = createP(message);
   result.position(50, 700);
