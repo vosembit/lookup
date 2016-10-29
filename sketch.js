@@ -72,14 +72,14 @@ function setup() {
 
 
 function in256() {
-  
+
   instep = 32;
   inres = 256;
   infactor = 1;
 }
 
 function in1024() {
-  
+
   instep = 16;
   inres = 1024;
   infactor = 4;
@@ -91,7 +91,7 @@ function in1024() {
 
 
 function out256() {
-  
+
   outstep = 32;
   outres = 256;
   outfactor = 1;
@@ -99,7 +99,7 @@ function out256() {
 }
 
 function out1024() {
-  
+
   outstep = 16;
   outres = 1024;
   outfactor = 4;
@@ -144,6 +144,14 @@ function mesh() {
   }
 
   line(50, height - 50, width - 50, 50);
+
+  for (var i = 50; i <= 562; i += instep * 4) {
+    noStroke();
+    fill(150);
+    textSize(8);
+    text((i - 50) / 2 * infactor, 30, height-i);
+  }
+
   for (var i = 50; i <= 562; i += outstep * 4) {
     noStroke();
     fill(150);
@@ -157,6 +165,7 @@ function mesh() {
 //points on curve calcualtons. 
 function points() {
   var flag = 0;
+
   // drawing 3 control point just for fun
   for (var i = 0; i <= 4; i++) {
 
@@ -169,6 +178,8 @@ function points() {
     textSize(8);
     text(value * infactor, x + 5, y + 5);
   }
+
+
   // calculating point according to Resolution
   var values = [];
   for (var i = 0; i <= outres; i++) {
