@@ -38,30 +38,29 @@ function myMesh() {
   noFill();
   stroke('#4D4D4D')
   rect(width / 2, height / 2, 512, 512);
-  
-  for (var i = spacer; i < side; i += outstep) {
+
+  for (var i = spacer; i < side; i += outstep) {      // vertical lines 
     line(i, spacer, i, side);
   }
-  for (var i = spacer; i < side; i += instep) {
+  for (var i = spacer; i < side; i += instep) {       // horizontal lines 
     line(spacer, i, side, i);
   }
-  for (var i = spacer; i <= side; i += instep * 4) {
+  for (var i = spacer; i <= side; i += instep * 4) {  // vertical numbers 
     noStroke();
     fill(150);
     textSize(8);
     text((i - spacer) / 2 * infactor, 30, height - i);
   }
-  stroke(104);
-  line(306, spacer, 306, side);           // linear defaults
-  line(spacer, 306, side, 306);           // middle line horizontal
-  line(spacer, side, side, spacer);       // middle line vertical
-
-  for (var i = spacer; i <= side; i += outstep * 4) {
+  for (var i = spacer; i <= side; i += outstep * 4) { // horizontal numbers 
     noStroke();
     fill(150);
     textSize(8);
     text((i - spacer) / 2 * outfactor, i, height - 30);
   }
+  stroke(104);
+  line(306, spacer, 306, side);           // linear defaults
+  line(spacer, 306, side, 306);           // middle line horizontal
+  line(spacer, side, side, spacer);       // middle line vertical
 }
 
 //points on curve calcualtons. 
@@ -91,6 +90,8 @@ function calcs() {
     append(values, value + ", ");
     }
   }
+  
+  // print array values to html page
   var separator = " "
   message = join(values, separator);
   summ.html("Calculations for " + inres + " / " + outres + " :");
@@ -128,7 +129,8 @@ function myCurve() {
   noFill();
   strokeWeight(1);
   stroke(255);
-  //curve render based on control points
+  
+  //drrawing curve based on control points
   bezier(spacer, side, ax, ay, bx, by, side, spacer);
   beginShape();
   fill(127, 50);
@@ -137,6 +139,7 @@ function myCurve() {
   bezierVertex(ax, ay, bx, by, side, spacer);
   bezierVertex(side, spacer, side, side, side, side);
   endShape();
+  
   //drawing control points for adjusting curve 
   stroke(255, 102, 0);
   fill(255, 102, 0);
