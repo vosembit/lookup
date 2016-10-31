@@ -38,33 +38,35 @@ function myMesh() {
   noFill();
   stroke('#4D4D4D')
   rect(width / 2, height / 2, 512, 512);
-
-  for (var i = spacer; i < side; i += outstep) {      // vertical lines 
+  
+  for (var i = spacer; i < side; i += outstep) {
     line(i, spacer, i, side);
   }
-  for (var i = spacer; i < side; i += instep) {       // horizontal lines 
+  for (var i = spacer; i < side; i += instep) {
     line(spacer, i, side, i);
   }
-  for (var i = spacer; i <= side; i += instep * 4) {  // vertical numbers 
+  for (var i = spacer; i <= side; i += instep * 4) {
     noStroke();
     fill(150);
     textSize(8);
     text((i - spacer) / 2 * infactor, 30, height - i);
   }
-  for (var i = spacer; i <= side; i += outstep * 4) { // horizontal numbers 
+  stroke(104);
+  line(306, spacer, 306, side);           // linear defaults
+  line(spacer, 306, side, 306);           // middle line horizontal
+  line(spacer, side, side, spacer);       // middle line vertical
+
+  for (var i = spacer; i <= side; i += outstep * 4) {
     noStroke();
     fill(150);
     textSize(8);
     text((i - spacer) / 2 * outfactor, i, height - 30);
   }
-  stroke(104);
-  line(306, spacer, 306, side);           // linear defaults
-  line(spacer, 306, side, 306);           // middle line horizontal
-  line(spacer, side, side, spacer);       // middle line vertical
 }
 
 //points on curve calcualtons. 
 function calcs() {
+  
   // drawing 3 control point just for fun
   for (var i = 0; i <= 4; i++) {
     t = i / 4;
@@ -83,15 +85,13 @@ function calcs() {
     t = i / outres;
     x = bezierPoint(spacer, ax, bx, side, t);
     y = bezierPoint(side, ay, by, spacer, t);
-    var value = floor((side - y) / 2 * infactor);
+    var value = round((side - y) / 2 * infactor);
     if (i == outres-1){
     append(values, value);  
     }else{
     append(values, value + ", ");
     }
   }
-  
-  // print array values to html page
   var separator = " "
   message = join(values, separator);
   summ.html("Calculations for " + inres + " / " + outres + " :");
@@ -129,8 +129,7 @@ function myCurve() {
   noFill();
   strokeWeight(1);
   stroke(255);
-  
-  //drrawing curve based on control points
+  //curve render based on control points
   bezier(spacer, side, ax, ay, bx, by, side, spacer);
   beginShape();
   fill(127, 50);
@@ -139,10 +138,9 @@ function myCurve() {
   bezierVertex(ax, ay, bx, by, side, spacer);
   bezierVertex(side, spacer, side, side, side, side);
   endShape();
-  
   //drawing control points for adjusting curve 
   stroke(255, 102, 0);
-  fill(255, 102, 0);
+  fill(255,127,0);
   line(spacer, side, ax, ay);
   line(side, spacer, bx, by);
   rect(ax, ay, 5, 5);
