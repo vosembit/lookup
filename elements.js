@@ -50,9 +50,14 @@ function elements() {
   summ.position(50, 650);
   summ.id("summ");
 
+  // INPUT RESOLUTION SELECTOR
+  input = createP('(copy generated values to clipboard and paste it to your code)');
+  input.position(50, 680);
+  input.id("input");
+
   // create paragraph text with calculated data
   result = createP(message);
-  result.position(50, 700);
+  result.position(50, 720);
   result.id("result");
 }
 
