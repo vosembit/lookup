@@ -88,7 +88,7 @@ function calcs() {
   }
   var separator = " "
   message = join(values, separator);
-  summ.html("Calculations for " + inres + " / " + outres);
+  summ.html("Calculations for " + inres + " / " + outres + " :");
   if (state) {
     result.html(message);
     state = false;
