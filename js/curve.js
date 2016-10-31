@@ -3,17 +3,17 @@ var canvas, ax, ay, bx, by, t;
 var spacer = 50;
 var side = 562;
 
-var inres = 256;    // Input Resolution
-var instep = 32;    // Input Mesh Step
-var infactor = 1;   // Input Multiple Factor
+var inres = 256;      // Input Resolution
+var instep = 32;      // Input Mesh Step
+var infactor = 1;     // Input Multiple Factor
 
-var outres = 256;   // Output Resolution
-var outstep = 32;   // Output Mesh Step
-var outfactor = 1;  // Output Multiple Factor
+var outres = 256;     // Output Resolution
+var outstep = 32;     // Output Mesh Step
+var outfactor = 1;    // Output Multiple Factor
   
-var state = false;  // Print Calculations to the page
-var message;        // Save Calculations to the array
-var summ;           // Save Calculations to the header
+var state = false;    // Print Calculations to the page
+var message;          // Save Calculations to the array
+var summ;             // Save Calculations to the header
 
 
 function setup() {
@@ -27,10 +27,10 @@ function setup() {
 
 function draw() {
   background('#333333');
-  myMesh();         //  drawing background design based on selected resolution  
-  myCurve();        //  drawing main curve based on input data
-  mouseEvents();    //  getting data from user/mouse
-  calcs();          //  calculations for Y-point based on selected resolution
+  myMesh();             //  drawing background design based on selected resolution  
+  myCurve();            //  drawing main curve based on input data
+  mouseEvents();        //  getting data from user/mouse
+  calcs();              //  calculations for Y-point based on selected resolution
 }
 
 //background mesh design
@@ -77,6 +77,7 @@ function calcs() {
     textSize(8);
     text(value * infactor, x + 5, y + 5);
   }
+  
   // calculating point according to Resolution
   var values = [];
   for (var i = 0; i < outres; i++) {
@@ -84,13 +85,17 @@ function calcs() {
     x = bezierPoint(spacer, ax, bx, side, t);
     y = bezierPoint(side, ay, by, spacer, t);
     var value = floor((side - y) / 2 * infactor);
+    if (i == outres-1){
+    append(values, value);  
+    }else{
     append(values, value + ", ");
+    }
   }
   var separator = " "
   message = join(values, separator);
   summ.html("Calculations for " + inres + " / " + outres + " :");
   if (state) {
-    result.html(message);
+    result.html("{ " + message + " }");
     state = false;
   }
 }
