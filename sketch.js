@@ -13,95 +13,20 @@ var outfactor = 1;  // Output Multiple Factor
   
 var state = false;  // Print Calculations to the page
 var message;        // Save Calculations to the array
+var summ;           // Save Calculations to the header
+
 
 function setup() {
   rectMode(CENTER);
-
-  // INPUT RESOLUTION SELECTOR
-  input = createP('INPUT:');
-  input.position(50, 45);
-  input.id("input");
-  
-  // create input 8 bit resolution button
-  input8 = createButton('256');
-  input8.position(100, 50);
-  input8.id("res");
-  input8.mousePressed(in256);
-  
-  // create input 10 bit resolution button
-  input10 = createButton('1024');
-  input10.position(150, 50);
-  input10.id("res");
-  input10.mousePressed(in1024);
-  
-  // OUTPUT RESOLUTION SELECTOR
-  output = createP('OUTPUT:');
-  output.position(226, 50);
-  output.id("input");
-  
-  // create output 8 bit resolution button
-  output8 = createButton('256');
-  output8.position(290, 50);
-  output8.id("res");
-  output8.mousePressed(out256);
-  
-  // create output 10 bit resolution button
-  output10 = createButton('1024');
-  output10.position(340, 50);
-  output10.id("res");
-  output10.mousePressed(out1024);
-  
-  // create get button
-  getData = createButton('GET DATA');
-  getData.position(450, 50);
-  getData.id("btn");
-  getData.mousePressed(showData);
-  
-  // create canvas for curve and infografics
-  canvas = createCanvas(612, 612);
-  canvas.position(0, 100);
-  canvas.parent('curve');
-  
-  // create paragraph text with calculated data
-  result = createP(message);
-  result.position(50, 700);
-  result.id("result");
-
+  elements();
   ax = 256;
   ay = height - 256;
   bx = width - 256;
   by = 256;
-
-}
-
-function in256() {
-  instep = 32;
-  inres = 256;
-  infactor = 1;
-}
-function in1024() {
-  instep = 16;
-  inres = 1024;
-  infactor = 4;
-}
-function out256() {
-  outstep = 32;
-  outres = 256;
-  outfactor = 1;
-}
-function out1024() {
-  outstep = 16;
-  outres = 1024;
-  outfactor = 4;
-}
-function showData() {
-  state = true;
 }
 
 function draw() {
-  
   background('#333333');
-  
   myMesh();         //  drawing background design based on selected resolution  
   myCurve();        //  drawing main curve based on input data
   mouseEvents();    //  getting data from user/mouse
@@ -126,7 +51,6 @@ function myMesh() {
     textSize(8);
     text((i - spacer) / 2 * infactor, 30, height - i);
   }
-  
   stroke(104);
   line(306, spacer, 306, side);           // linear defaults
   line(spacer, 306, side, 306);           // middle line horizontal
@@ -142,7 +66,6 @@ function myMesh() {
 
 //points on curve calcualtons. 
 function calcs() {
-
   // drawing 3 control point just for fun
   for (var i = 0; i <= 4; i++) {
     t = i / 4;
@@ -154,7 +77,6 @@ function calcs() {
     textSize(8);
     text(value * infactor, x + 5, y + 5);
   }
-  
   // calculating point according to Resolution
   var values = [];
   for (var i = 0; i < outres; i++) {
@@ -166,8 +88,8 @@ function calcs() {
   }
   var separator = " "
   message = join(values, separator);
+  summ.html("Calculations for " + inres + " / " + outres);
   if (state) {
-    result.html(" ");
     result.html(message);
     state = false;
   }
@@ -179,6 +101,7 @@ function mouseEvents() {
     if (dist(mouseX, mouseY, ax, ay) < 50) {
       ax = mouseX;
       ay = mouseY;
+      state = true;
       if (mouseX >= side  ) ax = side;
       if (mouseX <= spacer) ax = spacer;
       if (mouseY >= side  ) ay = side;
@@ -187,6 +110,7 @@ function mouseEvents() {
     if (dist(mouseX, mouseY, bx, by) < 50) {
       bx = mouseX;
       by = mouseY;
+      state = true;
       if (mouseX >= side  ) bx = side;
       if (mouseX <= spacer) bx = spacer;
       if (mouseY >= side  ) by = side;
