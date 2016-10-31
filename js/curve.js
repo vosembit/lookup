@@ -3,11 +3,11 @@ var canvas, ax, ay, bx, by, t;
 var spacer = 50;
 var side = 562;
 
-var inres = 256;      // Input Resolution
+var inres = 255;      // Input Resolution
 var instep = 32;      // Input Mesh Step
 var infactor = 1;     // Input Multiple Factor
 
-var outres = 256;     // Output Resolution
+var outres = 255;     // Output Resolution
 var outstep = 32;     // Output Mesh Step
 var outfactor = 1;    // Output Multiple Factor
   
@@ -81,12 +81,12 @@ function calcs() {
   
   // calculating point according to Resolution
   var values = [];
-  for (var i = 0; i < outres; i++) {
+  for (var i = 0; i <= outres; i++) {
     t = i / outres;
     x = bezierPoint(spacer, ax, bx, side, t);
     y = bezierPoint(side, ay, by, spacer, t);
     var value = round((side - y) / 2 * infactor);
-    if (i == outres-1){
+    if (i == outres){
     append(values, value);  
     }else{
     append(values, value + ", ");
@@ -129,6 +129,7 @@ function myCurve() {
   noFill();
   strokeWeight(1);
   stroke(255);
+  
   //curve render based on control points
   bezier(spacer, side, ax, ay, bx, by, side, spacer);
   beginShape();
@@ -138,6 +139,7 @@ function myCurve() {
   bezierVertex(ax, ay, bx, by, side, spacer);
   bezierVertex(side, spacer, side, side, side, side);
   endShape();
+  
   //drawing control points for adjusting curve 
   stroke(255, 102, 0);
   fill(255,127,0);
