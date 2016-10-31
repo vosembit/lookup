@@ -38,7 +38,7 @@ function elements() {
   getData = createButton('RESET');
   getData.position(450, 60);
   getData.id("btn");
-  getData.mousePressed(showData);
+  getData.mousePressed(reset);
 
   // create canvas for curve and infografics
   canvas = createCanvas(612, 612);
@@ -89,7 +89,13 @@ function out1024() {
   state = true;
 }
 
-function showData() {
+function reset() {
+  instep = 32;
+  inres = 256;
+  outstep = 32;
+  outres = 256;
+  infactor = 1;
+  outfactor = 1;
   ax = 256;
   ay = height - 256;
   bx = width - 256;
