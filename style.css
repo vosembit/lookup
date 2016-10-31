@@ -6,8 +6,11 @@ p {
   font: 10px arial, sans-serif;
   LINE-HEIGHT: 20px;
   color: #8e8e8e;
-  /* margin-left: 50px; */
-  /*margin-top: 50px;*/
+}
+
+h3 {
+  font: 18px arial, sans-serif;
+  color: #FFFFFF;
 }
 
 #result {
@@ -21,7 +24,6 @@ p {
 
 #btn {
   background-color: #4CAF50;
-  /* Green */
   border: none;
   color: white;
   padding: 8px 24px;
@@ -33,7 +35,6 @@ p {
 
 #btn:hover {
   background-color: #3cb0fd;
-  /* Green */
 }
 
 #res {
