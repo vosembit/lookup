@@ -8,6 +8,11 @@ p {
   color: #8e8e8e;
 }
 
+h1 {
+  font: 24px arial, sans-serif;
+  color: #FFFFFF;
+}
+
 h3 {
   font: 18px arial, sans-serif;
   color: #FFFFFF;
